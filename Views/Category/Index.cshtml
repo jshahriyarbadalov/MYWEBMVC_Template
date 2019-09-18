@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "Category";
+}
+
+@using MYWEBMVC_Template.Models
+@model List<Category>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-heading">
+                <div class="main-text h2">
+                    Categories
+                </div>
+                <div class="block-controls">
+                    <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+                    <a href="/Category/Add" class="btn btn-success rounded">New Category</a>
+                </div>
+            </div>
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Category Name</th>
+                                <th>Description</th>
+                                <th>Current</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (Category ctg in Model)
+                            {
+                                <tr>
+                                    <td>@ctg.CategoryName</td>
+                                    <td>@ctg.Description</td>
+                                    <td><a href="/Category/Current/@ctg.CategoryID" class="btn btn-primary">Current</a></td>
+                                    <td><a href="#" class="btn btn-danger ctgDelete" data-ctgId="@ctg.CategoryID">Delete</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+  
+    <script>
+        $(".ctgDelete").click(function() {
+            var result = confirm("Are you delete category?");
+            if (result) {
+                var ctgid = $(this).data("ctgId");
+                $.ajax({
+                    type: "POST",
+                    url: "/Category/Delete" + ctgid,
+                    success: function() {
+                        alert("Category deleted!");
+                        window.location.replace("/Category/Index");
+                    },
+                    error: function() {
+                        alert("Error delete Category!");
+                    }
+                });
+
+            } else {
+                alert("You canceled!");
+            }
+        });
+    </script>
+}
+

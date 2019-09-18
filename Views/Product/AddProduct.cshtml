@@ -1,0 +1,61 @@
+﻿@using MYWEBMVC_Template.Models
+
+@{
+    ViewBag.Title = "Add Product";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-heading">
+                <div class="main-text h2">
+                    Add Product Page
+                </div>
+                <div class="block-controls">
+                    <a href="/Product/Index"><span aria-hidden="true" class="icon icon-cross icon-size-medium block-control-remove"></span></a>
+                    
+                    <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+                </div>
+            </div>
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <form action="/Product/AddProduct" method="post" role="form">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Product Name: </label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Product Name" name="productName">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Price</label>
+                            <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Enter Price" name="price">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Stock: </label>
+                            <input type="number" class="form-control" id="exampleInputEmail1" placeholder="Enter Stock" name="stock">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Category: </label>
+                            <select name="CategoryID"  class="form-control">
+                                @foreach (Category ctg in ViewBag.Categories)
+                                {
+                                    <option value="@ctg.CategoryID">@ctg.CategoryName</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Supplier: </label>
+                            <select name="SupplierID" class="form-control">
+                            @foreach (Supplier sup in ViewBag.Suppliers)
+                            {
+                                <option value="@sup.SupplierID">@sup.CompanyName</option>
+                            }
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

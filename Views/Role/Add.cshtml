@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Add Role";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-heading">
+                <div class="main-text h2">
+                    Add Role Page
+                </div>
+                <div class="block-controls">
+                    <a href="/Role/Index"><span aria-hidden="true" class="icon icon-cross icon-size-medium block-control-remove"></span></a>
+
+                    <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+                </div>
+            </div>
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <form action="/Role/Add" method="post" role="form">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Role Name: </label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Role Name" name="roleName">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
